@@ -1,4 +1,4 @@
-<%= form_for(train) do |f| %>
+<%= form_with(model: train, local: true) do |form| %>
   <% if train.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(train.errors.count, "error") %> prohibited this train from being saved:</h2>
@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :number %>
-    <%= f.number_field :number %>
+    <%= form.label :name %>
+    <%= form.number_field :name, id: :train_name %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= form.submit %>
   </div>
 <% end %>

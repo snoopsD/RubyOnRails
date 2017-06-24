@@ -17,7 +17,7 @@ class TrainsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create train" do
     assert_difference('Train.count') do
-      post trains_url, params: { train: { number: @train.number } }
+      post trains_url, params: { train: { name: @train.name } }
     end
 
     assert_redirected_to train_url(Train.last)
@@ -34,7 +34,7 @@ class TrainsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update train" do
-    patch train_url(@train), params: { train: { number: @train.number } }
+    patch train_url(@train), params: { train: { name: @train.name } }
     assert_redirected_to train_url(@train)
   end
 
