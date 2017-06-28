@@ -4,7 +4,7 @@ class CreateTickets < ActiveRecord::Migration[5.1]
     t.integer :user_id
     t.integer :start_station_id
     t.integer :end_station_id
-    
+
     t.timestamps
     end
   end
