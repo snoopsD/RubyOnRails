@@ -43,6 +43,6 @@ class WagonsController < ApplicationController
     end
 
     def wagon_params
-      params.require(:wagon).permit(:type_class, :place_up, :place_down)
+      params.require(:wagon).permit(:type_class, :place_up, :place_down, :train_id)
     end
 end

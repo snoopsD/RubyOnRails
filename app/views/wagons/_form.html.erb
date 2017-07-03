@@ -2,7 +2,7 @@
 <%= render 'common/errors', resource: @wagon %>
   <div>
     <%= form.label :type_class, "Тип вагона"%>
-    <%= form.select :type_class, id: [['Плацкарт'], ['Купе']] %>
+    <%= form.select :type_class, [['Плацкарт'], ['Купе']] %>
 
     <%= form.label :place_up, "Кол-во верхних мест"%>
     <%= form.number_field :place_up, max: 4%>

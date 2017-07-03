@@ -22,5 +22,26 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Вагонов у поезда:</strong>
+  <% if @train.wagons.present? %>
+     <%= @train.wagons.count %><br>
+     Плацкартных:
+     <%= @train.wagons.where(type_class: 'Плацкарт').count %> |
+     Нижних мест:
+     <%= @train.wagons.where(type_class: 'Плацкарт').sum(:place_down)%> |
+     Верхних мест:
+     <%= @train.wagons.where(type_class: 'Плацкарт').sum(:place_up)%><br>
+     Купе:
+     <%= @train.wagons.where(type_class: 'Купе').count %> |
+     Нижних мест:
+     <%= @train.wagons.where(type_class: 'Купе').sum(:place_down)%> |
+     Верхних мест:
+     <%= @train.wagons.where(type_class: 'Купе').sum(:place_up)%>
+  <% else %>
+    0
+  <% end %>
+</p>
+
 <%= link_to 'Редактировать', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>
