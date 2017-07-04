@@ -1,0 +1,22 @@
+<%= form_with(model: wagon, local: true) do |form| %>
+<%= render 'common/errors', resource: @wagon %>
+  <div>
+    <%= form.label :type_class, "Тип вагона"%>
+    <%= form.select :type_class, [['Плацкарт'], ['Купе']] %>
+
+    <%= form.label :place_up, "Кол-во верхних мест"%>
+    <%= form.number_field :place_up, max: 4%>
+
+    <%= form.label :place_down, "Кол-во нижних мест"%>
+    <%= form.number_field :place_down, max: 4 %>
+  </div>
+
+  <div>
+    <%= form.label :train, "Выберите поезд к которому прицепить вагон"%>
+    <%= form.collection_select :train_id, Train.all, :id, :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "#{ @wagon.new_record? ? 'Создать' : 'Изменить'}" %>
+  </div>
+<% end %>
