@@ -2,11 +2,9 @@
 
 <p>
   <strong>Тип вагона</strong>
-  <%= @wagon.type_class %>
-  <strong>Количество нижних мест</strong>
-  <%= @wagon.place_down %>
-  <strong>Количество верхних мест</strong>
-  <%= @wagon.place_up %>
+  <%= @wagon.get_types.compact.join("") %>
+  <%= render @wagon.type.underscore%>
+
 </p>
 
 <%= link_to 'Редактировать', edit_wagon_path(@wagon) %> |
