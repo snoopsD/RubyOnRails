@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= form_with(model: @train, local: true) do |form| %>
 <p>
   <strong>Название</strong>
   <%= @train.name %>
@@ -25,23 +25,21 @@
 <p>
   <strong>Вагонов у поезда:</strong>
   <% if @train.wagons.present? %>
-     <%= @train.wagons.count %><br>
-     Плацкартных:
-     <%= @train.wagon_type('Плацкарт') %> |
-     Нижних мест:
-     <%= @train.wagon_down_seats('Плацкарт', :place_down) %> |
-     Верхних мест:
-     <%= @train.wagon_up_seats('Плацкарт', :place_up)%><br>
-     Купе:
-     <%= @train.wagon_type('Купе') %> |
-     Нижних мест:
-     <%= @train.wagon_down_seats('Купе', :place_down) %> |
-     Верхних мест:
-     <%= @train.wagon_up_seats('Купе', :place_up) %>
-  <% else %>
-    0
-  <% end %>
+     <%= @train.wagons.count %>
+     <%= form.check_box :sort %>
+     <%= form.submit "Сортировка" %>
+     <% if !@train.sort%> </br>
+          <% @train.wagons.head.each do |wagon|%>
+          <%= link_to wagon.number, wagon_path(wagon) %>
+          <% end %>
+        <% else %> </br>
+          <% @train.wagons.tail.each do |wagon|%>
+          <%= link_to wagon.number, wagon_path(wagon) %>
+          <% end %>
+      <% end %>
+    <% end %>
 </p>
 
 <%= link_to 'Редактировать', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>
+<% end %>

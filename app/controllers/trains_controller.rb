@@ -11,9 +11,6 @@ class TrainsController < ApplicationController
     @train = Train.new
   end
 
-  def edit
-  end
-
   def create
     @train = Train.new(train_params)
     if @train.save
@@ -21,6 +18,9 @@ class TrainsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -42,6 +42,6 @@ class TrainsController < ApplicationController
     end
 
     def train_params
-      params.require(:train).permit(:name, :current_station_id, :route_id)    
+      params.require(:train).permit(:name, :current_station_id, :route_id, :sort)
     end
 end
