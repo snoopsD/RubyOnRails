@@ -4,7 +4,8 @@ class SearchesController < ApplicationController
     @start_station = RailwayStation.find(params["start_station"])
     @end_station = RailwayStation.find(params["end_station"])
     @result = Search.find_routes(@start_station, @end_station)
-      if @result.present?
+    @result_trains = Search.find_trains(@result)
+      if @result_trains.present?
         render :show
       else
         render :new
@@ -13,5 +14,7 @@ class SearchesController < ApplicationController
 
   def show
   end
+
+
 
 end

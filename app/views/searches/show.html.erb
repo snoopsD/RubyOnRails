@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% Search.find_trains(@result).each do |train|  %>
+    <% @result_trains.each do |train|  %>
     <tr>
       <td><%= train.name %></td>
       <td><%= @start_station.title %></td>
