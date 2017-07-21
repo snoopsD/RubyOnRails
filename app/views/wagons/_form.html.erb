@@ -1,5 +1,4 @@
-
-<%= form_with(model: @wagon.becomes(Wagon), local: true) do |form| %>
+<%= form_for  @wagon.becomes(Wagon) do |form| %>
 <%= render 'common/errors', resource: @wagon %>
   <div>
     <%= form.label :type, "Тип вагона"%>
@@ -20,11 +19,6 @@
 
     <%= form.label :side_bot_place_up, "Кол-во верхних боковых мест"%>
     <%= form.number_field :side_bot_place_up, min:0, max: 2 %>
-
-  <div>
-    <%= form.label :train, "Выберите поезд к которому прицепить вагон"%>
-    <%= form.collection_select :train_id, Train.all, :id, :name %>
-  </div>
 
   <div class="actions">
     <%= form.submit "#{ @wagon.becomes(Wagon).new_record? ? 'Создать' : 'Изменить'}" %>
