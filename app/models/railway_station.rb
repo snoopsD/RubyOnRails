@@ -6,13 +6,29 @@ class RailwayStation < ApplicationRecord
 
   validates :title, presence: true
 
-  scope :sort_stations, -> (route_id){RailwayStationsRoute.where(route_id: route_id).order(:number_st)}
- 
+  scope :ordered, -> { joins(:railway_stations_routes).order("railway_stations_routes.position").uniq }
 
   def update_position(route, position)
-    rst = RailwayStationsRoute.find_by(route: route, railway_station: self)
-    rst.number_st = position
-    rst.save
+    station_route = station_route(route)
+    station_route.update(position: position) if station_route
   end
 
+  def position_in(route)
+    station_route(route).try(:position)
+  end
+
+  def update_time(route, state, time)
+    station_route = station_route(route)
+    station_route.update(state => time)
+  end
+
+  def time_in(route, state_time)
+    station_route(route).try(state_time).try(:strftime, "%H:%M")
+  end
+
+  protected
+
+  def station_route(route)
+    @station_route ||= railway_stations_routes.where(route: route).first
+  end
 end
