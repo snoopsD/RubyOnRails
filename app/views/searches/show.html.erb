@@ -17,7 +17,7 @@
       <td><%= @start_station.time_in(train.route, :departure)%></td>
       <td><%= @end_station.title %></td>
       <td><%= @end_station.time_in(train.route, :arrival)%></td>
-      <td>
+      <td>        
         <%= form_tag  new_ticket_path, method: :get do %>
           <%= hidden_field_tag :train_title, train.name %>
           <%= hidden_field_tag :train_id, train.id %>

@@ -1,5 +1,4 @@
-<h1>БИЛЕТ №-<%= @ticket.id %></h1>
-
+<p> Билет купил <%= @ticket.user.email%></p>
   <table>
     <thead>
       <tr>
@@ -18,3 +17,5 @@
       </tr>
     </tbody>
   </table>
+
+<%= link_to 'Назад', tickets_path%>
