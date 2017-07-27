@@ -1,0 +1,21 @@
+<p> Билет купил <%= @ticket.user.email%></p>
+  <table>
+    <thead>
+      <tr>
+        <th>ФИО</th>
+        <th>Поезд №</th>
+        <th>Начальная станция</th>
+        <th>Конечная станция</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @ticket.surname %> <%= @ticket.name %> <%= @ticket.patronymic %></td>
+        <td><%= @ticket.train.name%></td>
+        <td><%= @ticket.start_station.title%></td>
+        <td><%= @ticket.end_station.title %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<%= link_to 'Назад', admin_tickets_path%>
