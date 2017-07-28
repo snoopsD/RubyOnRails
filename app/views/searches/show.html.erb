@@ -1,5 +1,5 @@
-<h1> Список поездов на маршруте: </h1>
-<table>
+<h3> Список поездов на маршруте: </h3>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Поезд №</th>
@@ -17,18 +17,22 @@
       <td><%= @start_station.time_in(train.route, :departure)%></td>
       <td><%= @end_station.title %></td>
       <td><%= @end_station.time_in(train.route, :arrival)%></td>
-      <td>        
+      <td>
         <%= form_tag  new_ticket_path, method: :get do %>
           <%= hidden_field_tag :train_title, train.name %>
           <%= hidden_field_tag :train_id, train.id %>
           <%= hidden_field_tag :start_station_id, @start_station.id %>
           <%= hidden_field_tag :end_station_id, @end_station.id %>
-          <%= submit_tag "Купить билет" %>
+          <div class="btn-group">
+            <%= submit_tag "Купить билет", class: "btn btn-default" %>
+          </div>
           <% end %>
       </td>
       <% end %>
     </tr>
   </tbody>
-</table>
-<%= link_to 'Поиск', new_search_path%>
-<%= link_to 'На главную', root_path%>
+<table class="table table-striped">
+<div class="btn-group">
+  <%= link_to t('common.search'), new_search_path, class: "btn btn-xs btn-primary" %>
+  <%= link_to t('common.root'), root_path, class: "btn btn-xs btn-primary" %>
+</div>

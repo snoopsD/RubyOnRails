@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <%= form_with(model: [:admin, @train], local: true) do |form| %>
 <p>
   <strong>Название</strong>
@@ -27,7 +26,7 @@
   <% if @train.wagons.present? %>
      <%= @train.wagons.count %>
      <%= form.check_box :sort %>
-     <%= form.submit "Сортировка" %>
+     <%= form.submit "Сортировка"%>
      <% if !@train.sort%> </br>
           <% @train.wagons.head.each do |wagon|%>
           <%= link_to wagon.number, admin_wagon_path(wagon) %>
@@ -40,7 +39,7 @@
     <% end %>
 </p>
 
-<%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %>
-<%= link_to 'Редактировать', edit_admin_train_path(@train) %> |
-<%= link_to 'Назад', admin_trains_path %>
+<%= link_to t('common.add'), new_admin_train_wagon_path(@train) %>
+<%= link_to t('common.edit'), edit_admin_train_path(@train) %> |
+<%= link_to t('common.back'), admin_trains_path %>
 <% end %>

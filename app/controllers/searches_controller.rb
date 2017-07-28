@@ -12,9 +12,10 @@ class SearchesController < ApplicationController
       end
   end
 
-  def show
+  def new
+    @stations = RailwayStation.all
   end
 
-
-
+  def show
+  end
 end
