@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-
+    
   @stations = RailwayStation.all.map {|p| [p.title]}
 
   def self.find_station(station)
@@ -15,5 +15,5 @@ class Search < ApplicationRecord
   def self.find_trains(routes)
     Train.where(route: routes)
   end
-  
+
 end

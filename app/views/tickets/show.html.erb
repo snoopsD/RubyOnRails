@@ -1,5 +1,6 @@
-<p> Билет купил <%= @ticket.user.email%></p>
-  <table>
+<p><b> Пользователь: </b> <%= @ticket.user.email%></p>
+
+<table class="table table-striped">
     <thead>
       <tr>
         <th>ФИО</th>
@@ -17,5 +18,6 @@
       </tr>
     </tbody>
   </table>
-
-<%= link_to 'Назад', tickets_path%>
+<div class="btn-group">
+  <%= link_to t('common.back'), tickets_path, class: "btn btn-xs btn-primary"%>
+</div>

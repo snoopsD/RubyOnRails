@@ -1,17 +1,17 @@
-<h1> Поиск билета</h1>
+<h3 align="left"> Поиск билета </h3> </br>
 
-<%=form_tag('/search') do  %>
-<p>
-<%= label_tag "Начальная станция" %>
-<%= select_tag :start_station, options_from_collection_for_select(RailwayStation.all, :id, :title) %>
-</p>
+<div class="row" align="left">
+  <%=form_tag('/search') do  %>
+    <div class="col-md-4">
+      <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
 
-<p>
-<%= label_tag "Конечная станция" %>
-<%= select_tag :end_station, options_from_collection_for_select(RailwayStation.all, :id, :title) %> </br>
-</p>
+    <div class="col-md-4">
+      <%= select_tag :end_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
 
-<%=  submit_tag "Поиск" %>
-<%= link_to 'На главную', root_path%>
-
+    <div class="col-md-4">
+      <%=  submit_tag "Поиск", class: 'btn btn-primary' %>
+    </div>
 <% end %>
+</div>

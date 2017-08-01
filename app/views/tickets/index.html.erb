@@ -1,13 +1,11 @@
-<h1>Билеты</h1>
-  <tbody>
+<div class="row">
+  <h3>Билеты</h3>
     <% current_user.tickets.each do |ticket| %>
-      <tr>
-        <td><%= link_to ticket.id, ticket_path(ticket) %></td>
-        <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td> <br>
-      </tr>
+      <table class="table table-striped">
+        <td> <%= link_to ticket.id, ticket_path(ticket) %> </td>
+        <td><%= link_to t('common.delete'), ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
-  </tbody>
-</table>
+  </table>
 <br />
-
-<%= link_to 'На главную', root_path%>
+<%= link_to t('common.root'), root_path%>
+</div>
