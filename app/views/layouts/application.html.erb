@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Tutu" %></title>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -35,7 +36,12 @@
               <% if user_signed_in?%>
                 <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
                   <% if current_user.admin? %>
-                    <li><%= link_to "Админка", root_path  %></li>
+                    <li> <%= link_to 'Список станций', admin_railway_stations_path =%></li>
+                    <li><%= link_to 'Список поездов', admin_trains_path =%></li>
+                    <li> <%= link_to 'Список маршрутов', admin_routes_path =%></li>
+                    <li> <%= link_to 'Список вагонов', admin_wagons_path =%></li>
+                    <li> <%= link_to 'Список билетов', admin_tickets_path =%></li>
+                    <li> <%= link_to 'Создать билет', new_admin_ticket_path =%></li>
                   <% else %>
                     <li><%= link_to "Билетная касса", new_search_path %></li>
                     <li><%= link_to 'Список билетов', tickets_path =%></li>
@@ -53,11 +59,16 @@
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-
-      </footer>
-
+      <div class="navbar-fixed-bottom row-fluid">
+            <div class="navbar-inner">
+                <div class="container">
+                  <footer>
+                    <% if user_signed_in?%>
+                      <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+                    <% else %>
+                      <%= link_to "Войти", new_user_session_path  %> <br />
+                    <% end %>
+                  </footer>
     </div> <!-- /container -->
 
   </body>

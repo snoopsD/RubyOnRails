@@ -24,7 +24,7 @@
           <%= hidden_field_tag :start_station_id, @start_station.id %>
           <%= hidden_field_tag :end_station_id, @end_station.id %>
           <div class="btn-group">
-            <%= submit_tag "Купить билет", class: "btn btn-default" %>
+            <%= submit_tag(user_signed_in? ? 'Купить' : 'Войти') %>
           </div>
           <% end %>
       </td>
