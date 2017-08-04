@@ -1,10 +1,5 @@
 class Wagon < ApplicationRecord
-  TYPES = {
-    SeatWagon => 'Сидячий',
-    EconomyWagon => 'Плацкарт',
-    CoupeWagon => 'Купе',
-    PremiumWagon => 'СВ'
-  }
+  TYPES = { SeatWagon: 'Сидячий', EconomyWagon: 'Плацкарт', CoupeWagon: 'Купе', PremiumWagon: 'СВ' }.freeze
 
   belongs_to :train
 

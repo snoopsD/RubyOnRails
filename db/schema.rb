@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725094303) do
+ActiveRecord::Schema.define(version: 20170801080018) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "premium_wagons", force: :cascade do |t|
     t.integer "number"
@@ -49,7 +52,12 @@ ActiveRecord::Schema.define(version: 20170725094303) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "station_routes", force: :cascade do |t|
+  create_table "stations_routes", force: :cascade do |t|
+    t.integer "station_id"
+    t.integer "route_id"
+    t.integer "position"
+    t.datetime "arrival"
+    t.datetime "departure"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -64,14 +72,16 @@ ActiveRecord::Schema.define(version: 20170725094303) do
     t.string "patronymic"
     t.integer "passport_serial"
     t.integer "passport_number"
+    t.index ["end_station_id"], name: "index_tickets_on_end_station_id"
+    t.index ["start_station_id"], name: "index_tickets_on_start_station_id"
   end
 
   create_table "trains", force: :cascade do |t|
     t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "current_station_id"
-    t.integer "route_id"
+    t.bigint "current_station_id"
+    t.bigint "route_id"
     t.boolean "sort"
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
@@ -99,7 +109,7 @@ ActiveRecord::Schema.define(version: 20170725094303) do
   create_table "wagons", force: :cascade do |t|
     t.integer "place_up"
     t.integer "place_down"
-    t.integer "train_id"
+    t.bigint "train_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "number"
@@ -107,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170725094303) do
     t.integer "side_bot_place_up"
     t.integer "place_seat"
     t.string "type"
+    t.index ["id", "type"], name: "index_wagons_on_id_and_type"
     t.index ["train_id"], name: "index_wagons_on_train_id"
   end
 
