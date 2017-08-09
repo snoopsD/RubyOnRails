@@ -25,6 +25,7 @@
             <p> Аккаунт: <%= current_user.email %></p>
             <li><%= link_to "Билетная касса", new_search_path %></li>
             <li><%= link_to "Билеты", tickets_path %></li>
+            <li> <%= link_to "Выйти", destroy_user_session_path, method: :delete %> </li>
           <% elsif user_signed_in? && current_user.admin? %>
               <li> <%= link_to "Выйти", destroy_user_session_path, method: :delete %> </li>
           <% else %>
