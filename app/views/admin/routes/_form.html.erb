@@ -1,7 +1,6 @@
-
-<%= form_with(model: [:admin, @route], local: true) do |form| %>
-
-  <% render 'common/errors', resource: @route %>
+<% hidden = false unless local_assigns[:hidden] %>
+<%= form_for [:admin, route], html: { style: "display: #{hidden ? 'none' : 'block'}" }  do |form| %>
+  <% render 'common/errors', resource: route %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :route_title %>
@@ -13,6 +12,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit t('.submit', action: @route.new_record? ? 'Создать' : 'Изменить') %>
+    <%= form.submit t('.submit', action: route.new_record? ? 'Создать' : 'Изменить') %>
   </div>
 <% end %>
