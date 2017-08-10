@@ -1,7 +1,7 @@
 <h3 align="left"> Поиск билета </h3> </br>
 
 <div class="row" align="left">
-  <%=form_tag('/search') do  %>
+  <%=form_tag search_path, class: 'search_form'  %>
     <div class="col-md-4">
       <%= select_tag :start_station, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
     </div>
@@ -11,7 +11,6 @@
     </div>
 
     <div class="col-md-4">
-      <%=  submit_tag "Поиск", class: 'btn btn-primary' %>
+      <%=  submit_tag "Поиск", class: 'btn btn-primary find' %>
     </div>
 </div>
-<% end %>
